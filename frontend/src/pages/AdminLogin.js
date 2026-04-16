@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../config/axios';
 import '../styles/AdminLogin.css';
 
 const AdminLogin = () => {
@@ -31,7 +31,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/admin/login', {
+      const response = await axios.post('/admin/login', {
         username: formData.username,
         password: formData.password,
       });
@@ -63,7 +63,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      await axios.post('/api/admin/register', {
+      await axios.post('/admin/register', {
         username: formData.username,
         email: formData.email,
         password: formData.password,

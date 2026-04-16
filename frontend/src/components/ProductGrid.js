@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ProductGrid.css';
-import axios from 'axios';
+import axios from '../config/axios';
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const ProductGrid = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('/products');
       setProducts(response.data);
       setLoading(false);
     } catch (error) {

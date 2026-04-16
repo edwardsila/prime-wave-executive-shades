@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { Link } from 'react-router-dom';
 import '../styles/PreviousProjects.css';
 
@@ -15,7 +15,7 @@ const PreviousProjects = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/projects');
+      const response = await axios.get('/projects');
       // Filter featured projects or show all if less than 6
       const displayProjects = response.data.length > 6
         ? response.data.filter(p => p.featured)

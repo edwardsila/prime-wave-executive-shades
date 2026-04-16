@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../config/axios';
 import Logo from '../components/Logo';
 import '../styles/AdminPage.css';
 
@@ -32,9 +32,7 @@ const AdminPage = () => {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await axios.get('/api/admin/products', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get('/admin/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -46,9 +44,7 @@ const AdminPage = () => {
 
   const fetchProjects = useCallback(async () => {
     try {
-      const response = await axios.get('/api/admin/projects', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get('/admin/projects');
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);

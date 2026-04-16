@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../config/axios';
 import Logo from '../components/Logo';
 import '../styles/ProjectDetail.css';
 
@@ -15,7 +15,7 @@ const ProjectDetail = () => {
   const fetchProject = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/projects/${id}`);
+      const response = await axios.get(`/projects/${id}`);
       setProject(response.data);
       setError(null);
     } catch (err) {
@@ -28,7 +28,7 @@ const ProjectDetail = () => {
 
   const fetchAllProjects = useCallback(async () => {
     try {
-      const response = await axios.get('/api/projects');
+      const response = await axios.get('/projects');
       setProjects(response.data);
     } catch (err) {
       console.error('Error fetching projects:', err);

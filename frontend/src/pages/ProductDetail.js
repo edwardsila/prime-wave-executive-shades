@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import axios from 'axios';
+import axios from '../config/axios';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 import WhatsAppBubble from '../components/WhatsAppBubble';
@@ -23,7 +23,7 @@ const ProductDetail = () => {
 
   const fetchProduct = useCallback(async () => {
     try {
-      const response = await axios.get(`/api/products/${id}`);
+      const response = await axios.get(`/products/${id}`);
       setProduct(response.data);
       setLoading(false);
     } catch (err) {

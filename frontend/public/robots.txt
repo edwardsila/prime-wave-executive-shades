@@ -1,0 +1,20 @@
+# robots.txt for Prime Wave Executive Shades
+# This file helps search engines index your website
+
+User-agent: *
+Allow: /
+Disallow: /admin-login
+Disallow: /api
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /admin-login
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin-login
+
+# Sitemap location
+Sitemap: https://primewaveshades.works/sitemap.xml
