@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// Get API URL from environment or use relative path as fallback
-const API_URL = process.env.REACT_APP_API_URL || 'https://prime-wave-executive-shades.vercel.app/api';
+// Use relative /api path - Vercel's experimentalServices routes this to backend
+// For production, the baseURL will be the API endpoint
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 
 // Create axios instance with base URL
 const axiosInstance = axios.create({
