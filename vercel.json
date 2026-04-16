@@ -1,15 +1,10 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "cd frontend && npm install && npm run build && cd ../backend && npm install",
   "outputDirectory": "frontend/build",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs24.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/backend/api/$1.js"
     },
     {
       "source": "/(.*)",
