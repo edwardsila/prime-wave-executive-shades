@@ -118,6 +118,32 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
 
+// Setup endpoint - create default admin (remove this in production)
+app.get('/api/setup', async (req, res) => {
+  try {
+    const Admin = require('./models/Admin');
+    const adminExists = await Admin.findOne({ username: 'admin' });
+    
+    if (adminExists) {
+      return res.json({ message: 'Admin already exists', admin: { username: adminExists.username } });
+    }
+    
+    // Create default admin
+    const newAdmin = new Admin({
+      username: 'admin',
+      email: 'admin@primewaveshades.com',
+      password: 'admin123',
+    });
+    
+    await newAdmin.save();
+    res.json({ message: '✅ Admin user created successfully!', username: 'admin', password: 'admin123' });
+  } catch (error) {
+    console.error('Setup error:', error);
+    res.status(500).json({ message: 'Setup failed', error: error.message });
+  }
+});
+
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ message: 'Endpoint not found' });
