@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Logo from '../components/Logo';
@@ -37,9 +37,9 @@ const AdminPage = () => {
       fetchProducts();
       fetchProjects();
     }
-  }, [token, navigate]);
+  }, [token, navigate, fetchProducts, fetchProjects]);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await axios.get('/api/admin/products', {
         headers: { Authorization: `Bearer ${token}` },
@@ -51,9 +51,9 @@ const AdminPage = () => {
         navigate('/admin-login');
       }
     }
-  };
+  }, [token, navigate]);
 
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       const response = await axios.get('/api/admin/projects', {
         headers: { Authorization: `Bearer ${token}` },
@@ -65,7 +65,7 @@ const AdminPage = () => {
         navigate('/admin-login');
       }
     }
-  };
+  }, [token, navigate]);
 
   const handleChange = (e) => {
     const { name, value, files, checked, type } = e.target;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
@@ -23,9 +23,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, [id]);
+  }, [id, fetchProduct]);
 
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     try {
       const response = await axios.get(`/api/products/${id}`);
       setProduct(response.data);
@@ -35,7 +35,7 @@ const ProductDetail = () => {
       setError('Product not found');
       setLoading(false);
     }
-  };
+  }, [id]);
 
   if (loading) {
     return <div className="loading-container">Loading product...</div>;
