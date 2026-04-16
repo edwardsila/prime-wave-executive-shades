@@ -57,7 +57,6 @@ const ProductDetail = () => {
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/about" className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
-            <Link to="/admin-login" className="nav-link admin-link">Admin</Link>
           </div>
         </div>
       </header>
