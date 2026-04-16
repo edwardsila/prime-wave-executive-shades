@@ -40,7 +40,7 @@ const AdminPage = () => {
         navigate('/admin-login');
       }
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
   const fetchProjects = useCallback(async () => {
     try {
@@ -52,7 +52,7 @@ const AdminPage = () => {
         navigate('/admin-login');
       }
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     if (!token) {
