@@ -62,7 +62,6 @@ const ProjectDetail = () => {
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/about" className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
-            <Link to="/admin-login" className="nav-link admin-link">Admin</Link>
           </div>
         </div>
       </header>
@@ -75,7 +74,7 @@ const ProjectDetail = () => {
         <div className="project-content">
           <div className="project-image-section">
             <img
-              src={`/uploads/${project.image}`}
+              src={project.image}
               alt={project.title}
               className="project-main-image"
               onError={(e) => {
@@ -133,7 +132,7 @@ const ProjectDetail = () => {
               {relatedProjects.map((p) => (
                 <Link key={p._id} to={`/project/${p._id}`} className="related-card">
                   <img
-                    src={`/uploads/${p.image}`}
+                    src={p.image}
                     alt={p.title}
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/300x200?text=Project';
