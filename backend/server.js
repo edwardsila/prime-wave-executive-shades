@@ -83,6 +83,11 @@ const productRoutes = require('./routes/products');
 const projectRoutes = require('./routes/projects');
 const adminRoutes = require('./routes/admin');
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ message: 'Prime Wave Executive Shades API is running', status: 'OK' });
+});
+
 app.use('/api/products', productRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/admin', adminRoutes);
