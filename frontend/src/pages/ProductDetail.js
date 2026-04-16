@@ -70,7 +70,6 @@ const ProductDetail = () => {
         <div className="product-detail-content">
           <div className="product-image-section">
             <img src={product.image} alt={product.name} className="product-detail-image" />
-            {!product.inStock && <div className="out-of-stock-banner">Out of Stock</div>}
           </div>
 
           <div className="product-info-section">
@@ -78,9 +77,6 @@ const ProductDetail = () => {
             
             <div className="product-meta">
               <span className="category-badge">{product.category}</span>
-              <span className={`stock-status ${product.inStock ? 'in-stock' : 'out-of-stock'}`}>
-                {product.inStock ? 'In Stock' : 'Out of Stock'}
-              </span>
             </div>
 
             <div className="description-section">

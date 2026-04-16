@@ -23,7 +23,6 @@ const ProductGrid = () => {
                 <div className="product-card">
                   <div className="product-image">
                     <img src={product.image} alt={product.name} />
-                    {!product.inStock && <div className="out-of-stock">Out of Stock</div>}
                   </div>
                   <div className="product-info">
                     <h3>{product.name}</h3>
