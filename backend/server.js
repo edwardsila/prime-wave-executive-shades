@@ -109,6 +109,35 @@ app.get('/', (req, res) => {
   res.json({ message: 'Prime Wave Executive Shades API is running', status: 'OK' });
 });
 
+// Setup endpoint - Create default admin (for initial setup only)
+app.post('/setup-admin', async (req, res) => {
+  try {
+    const Admin = require('./models/Admin');
+    const { username, email, password } = req.body;
+    
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: 'Username, email, and password are required' });
+    }
+    
+    const existingAdmin = await Admin.findOne({ username: username.toLowerCase() });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Admin user already exists' });
+    }
+    
+    const admin = new Admin({
+      username: username.trim(),
+      email: email.toLowerCase().trim(),
+      password: password
+    });
+    
+    await admin.save();
+    res.json({ message: '✅ Admin created successfully', username, email });
+  } catch (error) {
+    console.error('Setup error:', error);
+    res.status(500).json({ message: 'Setup failed', error: error.message });
+  }
+});
+
 app.use('/api/products', productRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/admin', adminRoutes);
