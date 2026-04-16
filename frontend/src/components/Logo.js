@@ -1,0 +1,53 @@
+import React from 'react';
+import '../styles/Logo.css';
+
+const Logo = ({ size = 'medium', showText = true }) => {
+  return (
+    <div className={`logo logo-${size}`}>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="logo-svg">
+        {/* Background circle */}
+        <circle cx="100" cy="100" r="95" fill="#007AFF" opacity="0.1" stroke="#007AFF" strokeWidth="2"/>
+        
+        {/* Main shade structure */}
+        <g id="shade">
+          {/* Top beam */}
+          <rect x="40" y="50" width="120" height="8" rx="4" fill="#007AFF"/>
+          
+          {/* Left support */}
+          <rect x="45" y="58" width="8" height="60" rx="4" fill="#0A66D2"/>
+          
+          {/* Right support */}
+          <rect x="147" y="58" width="8" height="60" rx="4" fill="#0A66D2"/>
+          
+          {/* Shade fabric (diagonal lines) */}
+          <line x1="50" y1="60" x2="150" y2="60" stroke="#007AFF" strokeWidth="2" opacity="0.8"/>
+          <line x1="48" y1="70" x2="152" y2="70" stroke="#007AFF" strokeWidth="2" opacity="0.7"/>
+          <line x1="46" y1="80" x2="154" y2="80" stroke="#007AFF" strokeWidth="2" opacity="0.6"/>
+          <line x1="44" y1="90" x2="156" y2="90" stroke="#007AFF" strokeWidth="2" opacity="0.5"/>
+          <line x1="42" y1="100" x2="158" y2="100" stroke="#007AFF" strokeWidth="2" opacity="0.4"/>
+          
+          {/* Bottom edge */}
+          <rect x="40" y="105" width="120" height="4" rx="2" fill="#0A66D2"/>
+          
+          {/* Car below shade */}
+          <rect x="30" y="120" width="140" height="50" rx="8" fill="#34C759" opacity="0.9"/>
+          <circle cx="50" cy="165" r="8" fill="#333"/>
+          <circle cx="150" cy="165" r="8" fill="#333"/>
+          <rect x="35" y="125" width="130" height="20" fill="rgba(255,255,255,0.3)"/>
+        </g>
+        
+        {/* Wave accent */}
+        <path d="M 30 175 Q 50 170 70 175 T 110 175 T 150 175" stroke="#007AFF" strokeWidth="2" fill="none" opacity="0.6"/>
+      </svg>
+      
+      {showText && (
+        <div className="logo-text">
+          <h1>Prime Wave</h1>
+          <p>Executive Shades</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Logo;

@@ -1,0 +1,191 @@
+.login-page {
+  min-height: 100vh;
+  background: #f8f8f8;
+  position: relative;
+}
+
+.login-page .back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  color: #007AFF;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  z-index: 10;
+}
+
+.login-page .back-button:hover {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.login-box h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1d1d1d;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.error-message {
+  background: #FFE5E1;
+  border: 1px solid #FF8A7B;
+  color: #FF3B30;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: slideDown 0.3s ease;
+  font-size: 0.85rem;
+  border-left: 4px solid #FF3B30;
+  font-weight: 500;
+}
+
+.success-message {
+  background: #E8F5E9;
+  border: 1px solid #81C784;
+  color: #34C759;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: slideDown 0.3s ease;
+  font-size: 0.85rem;
+  border-left: 4px solid #34C759;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1d1d1d;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+  background: #f9f9f9;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007AFF;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background: #007AFF;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+  letter-spacing: -0.3px;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #0A66D2;
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.toggle-section {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+.toggle-section p {
+  color: #666666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #007AFF;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  padding: 0;
+  font-size: inherit;
+}
+
+.toggle-button:hover {
+  color: #0A66D2;
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 20px;
+  }
+
+  .login-box h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
