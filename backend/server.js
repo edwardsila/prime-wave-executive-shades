@@ -81,21 +81,20 @@ mongoose.connect(process.env.MONGODB_URI, {
   // Seed default admin user if none exists
   try {
     const Admin = require('./models/Admin');
-    const bcryptjs = require('bcryptjs');
     
     const adminExists = await Admin.findOne({ username: 'admin' });
     if (!adminExists) {
-      const hashedPassword = await bcryptjs.hash('admin123', 10);
+      // Don't hash here - let the pre-save hook handle it
       const defaultAdmin = new Admin({
         username: 'admin',
         email: 'admin@primewaveshades.com',
-        password: hashedPassword,
+        password: 'admin123', // Plain password - model will hash it
       });
       await defaultAdmin.save();
-      console.log('Default admin user created: username=admin, password=admin123');
+      console.log('✅ Default admin user created: username=admin, password=admin123');
     }
   } catch (seedError) {
-    console.log('Admin seed check completed');
+    console.error('⚠️ Admin seed error:', seedError.message);
   }
 })
 .catch(err => console.log('MongoDB connection error:', err));
