@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from '../config/axios';
 import Logo from '../components/Logo';
+import projects from '../data/projects';
 import '../styles/ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -10,35 +10,18 @@ const ProjectDetail = () => {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [projects, setProjects] = useState([]);
-
-  const fetchProject = useCallback(async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`/api/projects/${id}`);
-      setProject(response.data);
-      setError(null);
-    } catch (err) {
-      setError('Project not found');
-      console.error('Error fetching project:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [id]);
-
-  const fetchAllProjects = useCallback(async () => {
-    try {
-      const response = await axios.get('/api/projects');
-      setProjects(response.data);
-    } catch (err) {
-      console.error('Error fetching projects:', err);
-    }
-  }, []);
 
   useEffect(() => {
-    fetchProject();
-    fetchAllProjects();
-  }, [id, fetchProject, fetchAllProjects]);
+    // Find project from static data
+    const foundProject = projects.find(p => p._id === id);
+    if (foundProject) {
+      setProject(foundProject);
+      setError(null);
+    } else {
+      setError('Project not found');
+    }
+    setLoading(false);
+  }, [id]);
 
   if (loading) {
     return (

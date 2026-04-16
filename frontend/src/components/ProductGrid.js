@@ -1,40 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ProductGrid.css';
-import axios from '../config/axios';
+import products from '../data/products';
 
 const ProductGrid = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetchProducts();
+    setProductList(products);
   }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('/api/products');
-      setProducts(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return <div className="loading">Loading products...</div>;
-  }
 
   return (
     <div className="products-section">
       <div className="container">
         <h2 className="section-title">Our Products</h2>
-        {products.length === 0 ? (
+        {productList.length === 0 ? (
           <p className="no-products">No products available at the moment</p>
         ) : (
           <div className="products-grid">
-            {products.map((product) => (
+            {productList.map((product) => (
               <Link key={product._id} to={`/product/${product._id}`} className="product-card-link">
                 <div className="product-card">
                   <div className="product-image">

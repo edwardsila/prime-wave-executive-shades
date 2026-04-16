@@ -1,48 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../config/axios';
 import { Link } from 'react-router-dom';
 import '../styles/PreviousProjects.css';
+import projects from '../data/projects';
 
 const PreviousProjects = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [displayProjects, setDisplayProjects] = useState([]);
 
   useEffect(() => {
-    fetchProjects();
+    setDisplayProjects(projects);
   }, []);
-
-  const fetchProjects = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('/api/projects');
-      // Filter featured projects or show all if less than 6
-      const displayProjects = response.data.length > 6
-        ? response.data.filter(p => p.featured)
-        : response.data;
-      setProjects(displayProjects);
-      setError(null);
-    } catch (err) {
-      setError('Failed to load projects');
-      console.error('Error fetching projects:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <section className="previous-projects">
-        <div className="container">
-          <div className="loading">Loading projects...</div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error || projects.length === 0) {
-    return null; // Don't show section if no projects
-  }
 
   return (
     <section className="previous-projects">
@@ -53,11 +19,11 @@ const PreviousProjects = () => {
         </div>
 
         <div className="projects-grid">
-          {projects.map((project) => (
+          {displayProjects.map((project) => (
             <div key={project._id} className="project-card">
               <div className="project-image-container">
                 <img 
-                  src={`/uploads/${project.image}`} 
+                  src={project.image} 
                   alt={project.title}
                   className="project-image"
                   onError={(e) => {
@@ -87,7 +53,7 @@ const PreviousProjects = () => {
           ))}
         </div>
 
-        {projects.length === 0 && !loading && (
+        {displayProjects.length === 0 && (
           <div className="no-projects">
             <p>No projects available at the moment. Check back soon!</p>
           </div>

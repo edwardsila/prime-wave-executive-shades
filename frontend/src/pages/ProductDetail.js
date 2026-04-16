@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import axios from '../config/axios';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 import WhatsAppBubble from '../components/WhatsAppBubble';
+import products from '../data/products';
 import '../styles/ProductDetail.css';
 
 const ProductDetail = () => {
@@ -15,27 +15,23 @@ const ProductDetail = () => {
   const [error, setError] = useState('');
 
   const handleInquire = () => {
-    // Open contact form or WhatsApp with product inquiry
+    // Open WhatsApp with product inquiry
     const phoneNumber = '971123456789';
     const message = `Hello! I am interested in inquiring about the ${product?.name}. Can you provide more information?`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  const fetchProduct = useCallback(async () => {
-    try {
-      const response = await axios.get(`/api/products/${id}`);
-      setProduct(response.data);
-      setLoading(false);
-    } catch (err) {
-      console.error('Error fetching product:', err);
-      setError('Product not found');
-      setLoading(false);
-    }
-  }, [id]);
-
   useEffect(() => {
-    fetchProduct();
-  }, [id, fetchProduct]);
+    // Find product from static data
+    const foundProduct = products.find(p => p._id === id);
+    if (foundProduct) {
+      setProduct(foundProduct);
+      setError('');
+    } else {
+      setError('Product not found');
+    }
+    setLoading(false);
+  }, [id]);
 
   if (loading) {
     return <div className="loading-container">Loading product...</div>;

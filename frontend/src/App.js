@@ -6,9 +6,6 @@ import ProductDetail from './pages/ProductDetail';
 import ProjectDetail from './pages/ProjectDetail';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
-import AdminPage from './pages/AdminPage';
-import AdminLogin from './pages/AdminLogin';
-import AdminRegister from './pages/AdminRegister';
 
 function App() {
   return (
@@ -19,9 +16,6 @@ function App() {
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin-register" element={<AdminRegister />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
