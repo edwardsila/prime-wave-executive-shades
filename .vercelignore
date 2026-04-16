@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+.env.local
+backend
+DEPLOY_BACKEND.md
+SEO_OPTIMIZATION.md
+ADMIN_SETUP.md
