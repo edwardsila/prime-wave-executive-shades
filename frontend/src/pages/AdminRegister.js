@@ -49,7 +49,7 @@ const AdminRegister = () => {
     }
 
     try {
-      const response = await axios.post('/api/admin/register', formData);
+      await axios.post('/api/admin/register', formData);
       setSuccess('✅ Admin registered successfully! Redirecting to login...');
       setTimeout(() => {
         navigate('/admin-login');
