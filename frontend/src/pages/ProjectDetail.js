@@ -12,11 +12,6 @@ const ProjectDetail = () => {
   const [error, setError] = useState(null);
   const [projects, setProjects] = useState([]);
 
-  useEffect(() => {
-    fetchProject();
-    fetchAllProjects();
-  }, [id, fetchProject, fetchAllProjects]);
-
   const fetchProject = useCallback(async () => {
     try {
       setLoading(true);
@@ -39,6 +34,11 @@ const ProjectDetail = () => {
       console.error('Error fetching projects:', err);
     }
   }, []);
+
+  useEffect(() => {
+    fetchProject();
+    fetchAllProjects();
+  }, [id, fetchProject, fetchAllProjects]);
 
   if (loading) {
     return (

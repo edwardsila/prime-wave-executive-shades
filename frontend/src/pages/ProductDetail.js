@@ -21,10 +21,6 @@ const ProductDetail = () => {
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  useEffect(() => {
-    fetchProduct();
-  }, [id, fetchProduct]);
-
   const fetchProduct = useCallback(async () => {
     try {
       const response = await axios.get(`/api/products/${id}`);
@@ -36,6 +32,10 @@ const ProductDetail = () => {
       setLoading(false);
     }
   }, [id]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [id, fetchProduct]);
 
   if (loading) {
     return <div className="loading-container">Loading product...</div>;

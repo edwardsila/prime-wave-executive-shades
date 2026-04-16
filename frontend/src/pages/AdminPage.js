@@ -30,15 +30,6 @@ const AdminPage = () => {
 
   const token = localStorage.getItem('adminToken');
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/admin-login');
-    } else {
-      fetchProducts();
-      fetchProjects();
-    }
-  }, [token, navigate, fetchProducts, fetchProjects]);
-
   const fetchProducts = useCallback(async () => {
     try {
       const response = await axios.get('/api/admin/products', {
@@ -67,8 +58,17 @@ const AdminPage = () => {
     }
   }, [token, navigate]);
 
+  useEffect(() => {
+    if (!token) {
+      navigate('/admin-login');
+    } else {
+      fetchProducts();
+      fetchProjects();
+    }
+  }, [token, navigate, fetchProducts, fetchProjects]);
+
   const handleChange = (e) => {
-    const { name, value, files, checked, type } = e.target;
+    const { name, value, files, checked } = e.target;
     if (activeTab === 'products') {
       if (name === 'image') {
         setFormData((prev) => ({
