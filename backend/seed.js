@@ -5,7 +5,6 @@
  */
 
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 require('dotenv').config({ path: '.env' });
 
 const Admin = require('./models/Admin');
@@ -19,25 +18,15 @@ const seedAdmin = async () => {
     });
     console.log('Connected to MongoDB');
 
-    // Check if admin exists
-    const existingAdmin = await Admin.findOne({ username: 'admin' });
-    if (existingAdmin) {
-      console.log('Admin user already exists!');
-      console.log('Username: admin');
-      console.log('Password: admin123');
-      await mongoose.disconnect();
-      return;
-    }
+    // Delete existing admin to refresh with new hashing
+    await Admin.deleteOne({ username: 'admin' });
+    console.log('Cleared existing admin user');
 
-    // Create admin
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash('admin123', salt);
-
+    // Create admin - the pre-save hook will hash the password
     const newAdmin = new Admin({
       username: 'admin',
       email: 'admin@primewaveshades.com',
-      password: hashedPassword,
-      role: 'admin'
+      password: 'admin123', // Plain password - model will hash it via pre-save hook
     });
 
     await newAdmin.save();
