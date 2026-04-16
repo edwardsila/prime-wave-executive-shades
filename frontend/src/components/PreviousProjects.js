@@ -15,7 +15,7 @@ const PreviousProjects = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/projects');
+      const response = await axios.get('/api/projects');
       // Filter featured projects or show all if less than 6
       const displayProjects = response.data.length > 6
         ? response.data.filter(p => p.featured)

@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// Use relative /api path - Vercel's experimentalServices routes this to backend
-// For production, the baseURL will be the API endpoint
-const API_URL = process.env.REACT_APP_API_URL || '/api';
+// Get API URL from environment - use full backend URL in production
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Create axios instance with base URL
 const axiosInstance = axios.create({

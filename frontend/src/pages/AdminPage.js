@@ -32,7 +32,7 @@ const AdminPage = () => {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await axios.get('/admin/products');
+      const response = await axios.get('/api/admin/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -44,7 +44,7 @@ const AdminPage = () => {
 
   const fetchProjects = useCallback(async () => {
     try {
-      const response = await axios.get('/admin/projects');
+      const response = await axios.get('/api/admin/projects');
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);

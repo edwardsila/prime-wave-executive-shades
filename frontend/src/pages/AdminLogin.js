@@ -31,7 +31,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('/admin/login', {
+      const response = await axios.post('/api/admin/login', {
         username: formData.username,
         password: formData.password,
       });
@@ -63,7 +63,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      await axios.post('/admin/register', {
+      await axios.post('/api/admin/register', {
         username: formData.username,
         email: formData.email,
         password: formData.password,

@@ -21,7 +21,7 @@ app.use(helmet());
 app.use(compression());
 
 // CORS: Strict origin control
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000,https://primewaveshades.works,https://www.primewaveshades.works,https://prime-wave-executive-shades.vercel.app').split(',');
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:5000,https://primewaveshades.works,https://www.primewaveshades.works,https://prime-wave-executive-shades.vercel.app').split(',').map(o => o.trim());
 app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)

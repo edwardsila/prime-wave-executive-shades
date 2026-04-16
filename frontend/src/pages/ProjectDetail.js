@@ -15,7 +15,7 @@ const ProjectDetail = () => {
   const fetchProject = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/projects/${id}`);
+      const response = await axios.get(`/api/projects/${id}`);
       setProject(response.data);
       setError(null);
     } catch (err) {
@@ -28,7 +28,7 @@ const ProjectDetail = () => {
 
   const fetchAllProjects = useCallback(async () => {
     try {
-      const response = await axios.get('/projects');
+      const response = await axios.get('/api/projects');
       setProjects(response.data);
     } catch (err) {
       console.error('Error fetching projects:', err);

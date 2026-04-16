@@ -23,7 +23,7 @@ const ProductDetail = () => {
 
   const fetchProduct = useCallback(async () => {
     try {
-      const response = await axios.get(`/products/${id}`);
+      const response = await axios.get(`/api/products/${id}`);
       setProduct(response.data);
       setLoading(false);
     } catch (err) {
