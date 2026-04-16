@@ -1,0 +1,14 @@
+{
+  "name": "prime-wave-executive-shades",
+  "version": "1.0.0",
+  "description": "Prime Wave Executive Shades - E-commerce platform",
+  "private": true,
+  "dependencies": {
+    "mongoose": "^7.5.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.1.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
